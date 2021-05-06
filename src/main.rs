@@ -196,7 +196,6 @@ impl World {
         }
     }
 
-    /// Update the `World` internal state; bounce the box around the screen.
     fn update(&mut self) {
         if self.box_x + self.velocity_x < 0 || self.box_x + BOX_SIZE + self.velocity_x > WIDTH as i32 {
             self.velocity_x = 0;
@@ -292,11 +291,6 @@ impl World {
         for (i, pixel) in frame.chunks_exact_mut(4).enumerate() {
             let x = (i % WIDTH as usize) as i32;
             let y = (i / WIDTH as usize) as i32;
-
-            let inside_the_box = x >= self.box_x
-                && x < self.box_x + BOX_SIZE
-                && y >= self.box_y
-                && y < self.box_y + BOX_SIZE;
 
             /*let rgba = if inside_the_box {
                 [0x5e, 0x48, 0xe8, 0xff]
